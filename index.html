@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BrainDotz NFT Project</title>
+    <title>BrainDotz - NFT Project Landing Page</title>
     <meta charset="utf-8">
     <style>
       body {
@@ -16,7 +16,6 @@
       
       .header {
         text-align: center;
-        /* margin-top: 0px; */
       }
 
       .header img {
@@ -33,15 +32,15 @@
 
       .social-icons {
         justify-content: center;
-        margin-top: 1%;
+        /* margin-top: 1%;
         margin-right: 1%;
-        margin-left: 1%;
+        margin-left: 1%; */
         text-align: center;
       }
 
       .brain-image {
         display: block;
-        margin: 1% auto;
+        margin: 0% auto;
         max-width: 100%;
         height: auto;
       }
@@ -58,6 +57,10 @@
         letter-spacing: 1px;
         text-decoration: none;
         transition: transform 0.3s ease-in-out;
+      }
+
+      .claim-text {
+        font-size: 200%;
       }
 
       .claim-btn:hover {
@@ -113,12 +116,42 @@
 
       // Call the updateHeader function every 3 seconds
       setInterval(updateHeader, 3000);
+
+      
+
+      window.onload = function() {
+        var targetDate = new Date("2023-03-26T22:15:00Z"); // Set the target date and time here
+        var countdownElement = document.getElementById("countdown");
+        var claimButtonElement = document.querySelector(".claim-btn");
+    
+        var countdownInterval = setInterval(function() {
+          var now = new Date().getTime();
+          var distance = targetDate - now;
+    
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+          var daysText = days > 0 ? days + "d " : "";
+          var hoursText = hours > 0 ? hours + "h " : "";
+          var minutesText = minutes > 0 ? minutes + "m " : "";
+          var secondsText = seconds + "s ";
+    
+          countdownElement.innerHTML = daysText + hoursText + minutesText + secondsText;
+    
+          if (distance <= 0) {
+            clearInterval(countdownInterval);
+            claimButtonElement.style.display = "block"
+            claimButtonElement.href = 'claim_page.html'
+            document.getElementById("claim-text").style.display = "none";
+          }
+        }, 0);
+      };
     </script>
   </head>
   <body>
     <div class="header">
-      <!-- <a href="https://twitter.com/DotzBrain"><img src="twitter-logo.png" alt="Twitter icon" height="2%" width="2%"></a>
-      <a href="https://opensea.io/YourOpenSeaProfile"><img src="opensea-icon.png" alt="OpenSea icon" height="2.1%" width="2.1%"></a> -->
       <h1>BrainDotz NFT { <span style="background: linear-gradient(to bottom, #FF61D2, #FE9090);
         -webkit-background-clip: text;
         -moz-background-clip: text;
@@ -128,11 +161,16 @@
       <h2>~[ Harnessing the power of Machine Learning and Artifical Intelligence ]~</h2>
     </div>
     <img src="./1500x500.jpeg" alt="Brain Image" class="brain-image">
-    <a href="claim_page.html" class="claim-btn">Claim NFT</a>
+    <p class="claim-text" id="claim-text">Claiming begins in <span style="background: linear-gradient(to bottom, #FF61D2, #FE9090);
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      background-clip: text;
+      color: transparent;" id="countdown"></span></p>
+    <a class="claim-btn" style="display: none;">Claim NFT</a>
 
     <div class="social-icons">
-      <a href="https://twitter.com/DotzBrain"><img src="twitter-logo.png" alt="Twitter icon" height="2%" width="2%" style="margin-right: 1%;"></a>
-      <a href="https://opensea.io/YourOpenSeaProfile"><img src="opensea-icon.png" alt="OpenSea icon" height="2.1%" width="2.1%"></a>
+      <a href="https://twitter.com/DotzBrain"><img src="twitter-logo.png" alt="Twitter icon" height="2%" width="3%" style="margin-right: 1%;"></a>
+      <a href="https://opensea.io/YourOpenSeaProfile"><img src="opensea-icon.png" alt="OpenSea icon" height="2.1%" width="3.1%"></a>
     </div>
   </body>
 </html>
